@@ -1,0 +1,31 @@
+#Project Rider
+.idea/
+
+# Visual Studio
+*.suo
+*.pdb
+*.exp
+*.iobj
+*.ipdb
+*.lib
+*.user
+*.opendb
+.vs/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# MonoDevelop
+*.userprefs
+
+# Gedit
+*~
+
+# OSX files
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+ 
