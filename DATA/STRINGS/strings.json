@@ -1,7 +1,7 @@
 {
-    "filetype": "infocards",
+    "filetype": "strings",
     "data": {
-        "1": "icard1",
-        "2": "icard2"
+        "1": "string1",
+        "2": "string2"
     }
 }

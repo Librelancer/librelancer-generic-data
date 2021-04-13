@@ -1,7 +1,6 @@
 {
-    "filetype": "strings",
+    "filetype": "infocards",
     "data": {
-        "1": "string1",
-        "2": "string2"
+        "1": "<?xml version=\"1.0\" encoding=\"UTF-16\"?><TEXT> System 01 </TEXT>",
     }
 }
