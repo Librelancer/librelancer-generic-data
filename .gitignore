@@ -28,4 +28,9 @@
 .LSOverride
 .Spotlight-V100
 .Trashes
+
+
+# Python byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
  

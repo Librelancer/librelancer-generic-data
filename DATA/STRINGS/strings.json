@@ -1,7 +1,6 @@
 {
     "filetype": "strings",
     "data": {
-        "1": "string1",
-        "2": "string2"
+        "1" : "string",
     }
 }

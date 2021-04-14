@@ -1,6 +1,6 @@
 {
     "filetype": "infocards",
     "data": {
-        "1": "<?xml version=\"1.0\" encoding=\"UTF-16\"?><RDL><PUSH/><JUST loc=\"center\"/><TRA color=\"blue\" bold=\"true\" font=\"1\"/><TEXT>Lorem ipsum</TEXT><PARA/><JUST loc=\"left\"/><TEXT>sit amet</TEXT><POP/></RDL>",
+        "1" : "<?xml version=\"1.0\" encoding=\"UTF-16\"?><RDL><PUSH/><JUST loc=\"center\"/><TRA color = \"aqua\" bold = \"true\" font = \"3\"/><TEXT>System 01</TEXT><PARA/><JUST loc=\"left\"/><TRA color = \"white\" bold = \"false\" font = \"0\"/><TEXT>A test system for the generic data pack.</TEXT><POP/></RDL>",
     }
 }
