@@ -49,13 +49,13 @@
 
 # This is not meant to be called directly, see "build_data.py" in root directory
 if __name__ != '__main__':
-	#TODO sort imports
-	from _python_modules.common import json_files, nl, space, divider
+	import _python_modules.common as c
+	from _python_modules.common import json_files
 	from _python_modules.common import nl, eq, space, divider # for printing
 
 # =========================== ADD FONTS IDS HERE ==============================
 # Yes, they are strings. Font sizes from rich_fonts.ini
-# TODO to common
+# TODO to fonts gen
 	allowed_font_ids = {
 		"0" : '\\"0\\"', #Size 20
 		"1" : '\\"1\\"', #Size 25
@@ -64,7 +64,6 @@ if __name__ != '__main__':
 	}
 
 # ============================ DO NOT EDIT BELOW ==============================
-	infocards = []
 
 	allowed_args = ["color", "bold", "italic", "underline", "font"]
 	allowed_options = {
@@ -144,6 +143,7 @@ if __name__ != '__main__':
 			self.string = self.tras + text_start + text + text_end
 
 # ======================== EDIT CARD TEMPLATES HERE ===========================
+# TODO: keep adding templates, move to templates
 	def system_card(sys_name, description):
 		return infocard(
 		alignment("center"),
@@ -165,38 +165,21 @@ if __name__ != '__main__':
 # ========================== EDIT INFOCARDS HERE ==============================
 # Add entries to this list. Each entry is a call to a template fucntion above.
 # TODO: automatically make a list from all the .ini refs.
-	def make_infocards():
-		global infocards
-		infocards.append(
+	def make():
+		global c
+		c.infocards_list.append(
 			system_card("System 01", "A test system for the generic data pack."),
 		)
-
-# =========================== CODE FOR PRINTING ===============================
-	def print_infocards():
-		for i in range(len(infocards)):
-			print(divider)
-			print(json_files["infocards"])
-			print(divider)
-			print("Infocard", i+1, ":")
-			print(infocards[i].string)
-			print()
-
-	def write_infocards():
-		make_infocards()
-		infocards_json_start = "{" + nl + space +'"filetype": "infocards",'+ nl + space \
-			+ '"data": {' + nl
+		
+		# CODE
+		infocards_json_start = "{" + nl + space +'"filetype": "infocards",' \
+			+ nl + space + '"data": {' + nl
 		infocards_json_end = space + "}" + nl + "}"
-		output = ""
 
-		output += infocards_json_start
-		for i in range(len(infocards)):
-			output += space*2 + '"'+str(i+1)+'" : "' + infocards[i].string + '",'
-			output += nl
-		output += infocards_json_end
-
-		f = open(json_files["infocards"], "w")
-		f.write(output)
-		f.close()
-	
-	
+		c.infocards_json_out += infocards_json_start
+		for i in range(len(c.infocards_list)):
+			c.infocards_json_out += space*2 + '"'+str(i+1)+'" : "' \
+				+ c.infocards_list[i].string + '",'
+			c.infocards_json_out += nl
+		c.infocards_json_out += infocards_json_end
 
