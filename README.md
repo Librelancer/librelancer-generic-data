@@ -6,7 +6,7 @@ The files in this repo are licensed CC0, see LICENSE for more details.
 
 ## How to
 
-There will be presets in `_python_editable_presets` folder which will be editable
+There will be presets in `_editable_data_presets` folder which will be editable
 in a safe way, ensuring absense of bugs, sanity checks and easy data manipulation.
 
 Use `build_data.py` to generate the game content. Just launch the script with 

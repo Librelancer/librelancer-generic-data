@@ -6,31 +6,31 @@ import _python_modules.common as c
 from _python_modules.common import print_file, write_file
 
 # Main
-import _python_modules.directories
-import _python_modules.librelancer_ini
+import _python_modules.file.directories
+import _python_modules.file.librelancer_ini
 
 # JSON (TODO: keep expanding as new files are implemented)
-import _python_modules.infocards_json
-import _python_modules.strings_json
+import _python_modules.file.infocards_json
+import _python_modules.file.strings_json
 
 # INI (TODO: keep expanding as new files are implemented)
-import _python_modules.base_missions_ini
-import _python_modules.cameras_ini
-import _python_modules.costumes_ini
-import _python_modules.constants_ini
-import _python_modules.bodyparts_ini
-import _python_modules.effect_shapes_ini
-import _python_modules.fonts_ini
-import _python_modules.hud_ini
-import _python_modules.infocardmap_ini
-import _python_modules.mouse_ini
-import _python_modules.navmap_ini
-import _python_modules.newcharacter_ini
-import _python_modules.rich_fonts_ini
-import _python_modules.shiparch_ini
-import _python_modules.solararch_ini
-import _python_modules.stararch_ini
-import _python_modules.universe_ini
+import _python_modules.file.base_missions_ini
+import _python_modules.file.cameras_ini
+import _python_modules.file.costumes_ini
+import _python_modules.file.constants_ini
+import _python_modules.file.bodyparts_ini
+import _python_modules.file.effect_shapes_ini
+import _python_modules.file.fonts_ini
+import _python_modules.file.hud_ini
+import _python_modules.file.infocardmap_ini
+import _python_modules.file.mouse_ini
+import _python_modules.file.navmap_ini
+import _python_modules.file.newcharacter_ini
+import _python_modules.file.rich_fonts_ini
+import _python_modules.file.shiparch_ini
+import _python_modules.file.solararch_ini
+import _python_modules.file.stararch_ini
+import _python_modules.file.universe_ini
 
 # ============================ MAIN SEQUENCE =================================
 # Do not edit anything in this block in order to ensure all .ini and .json files
@@ -39,17 +39,17 @@ import _python_modules.universe_ini
 # DATA directories and "librelancer.ini"
 # TODO: evaluate presets first, make a generated list of directories (systems)
 # and pass it alongside with the main directoriest list to be built.
-_python_modules.directories.make()
-_python_modules.librelancer_ini.make()
+_python_modules.file.directories.make()
+_python_modules.file.librelancer_ini.make()
 
 # JSON data files
-_python_modules.infocards_json.make()
-_python_modules.strings_json.make()
+_python_modules.file.infocards_json.make()
+_python_modules.file.strings_json.make()
 
 # INI data files 
-_python_modules.cameras_ini.make()
-#_python_modules.fonts_ini.make() TODO
-#_python_modules.rich_fonts_ini.make() TODO
+_python_modules.file.cameras_ini.make()
+#_python_modules.file.fonts_ini.make() TODO
+#_python_modules.file.rich_fonts_ini.make() TODO
 
 
 # ============================ WRITING FILES =================================
