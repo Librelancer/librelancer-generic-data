@@ -72,18 +72,34 @@ if __name__ != '__main__':
 		"solar" : data_path.joinpath("SOLAR"),
 		"strings" : data_path.joinpath("STRINGS"),
 		"universe" : data_path.joinpath("UNIVERSE"),
+		# TODO: STUB!!!
+		"stub_interface_baseside" : data_path.joinpath("INTERFACE", "BASESIDE"),
 	}
 
 	# Top-level json files.
-	# Paths can be renamed. Keys must not change
+	# Paths can be renamed.
+	#
+	#
+	#
+	#			 Keys must not change! COMPATIBILITY!
+	#
+	#
+	#
 	json_files = {
 		"infocards" : directories["strings"].joinpath("infocards.json"),
 		"strings" : directories["strings"].joinpath("strings.json"),
 	}
 
 	# Top-level ini files.
-	# Paths can be renamed. Keys must not change
+	# Paths can be renamed.
 	# TODO: keep adding paths
+	#
+	#
+	#
+	#			 Keys must not change! COMPATIBILITY!
+	#
+	#
+	#
 	ini_files = {
 		"bodyparts" : directories["characters"].joinpath("bodyparts.ini"),
 		"cameras" : directories["constants"].joinpath("cameras.ini"),
@@ -96,6 +112,7 @@ if __name__ != '__main__':
 		"infocardmap" : directories["interface"].joinpath("infocardmap.ini"),
 		"mbases" : directories["missions"].joinpath("base_missions.ini"),
 		"mouse" : directories["interface"].joinpath("mouse.ini"),
+		"newcharacter" : directories["characters"].joinpath("newcharacter.ini"),
 		"navmap" : directories["navmap"].joinpath("navmap.ini"),
 		"solar" : directories["solar"].joinpath("solararch.ini"),
 		"stars" : directories["solar"].joinpath("stararch.ini"),
@@ -103,8 +120,8 @@ if __name__ != '__main__':
 		"universe" : directories["universe"].joinpath("universe.ini"),
 		
 		# TODO: STUB FILES!!! They have to be removed eventually.
-		"stub_navbar" : directories["interface"] \
-			.joinpath("BASESIDE").joinpath("navbar.ini"),
+		"stub_navbar" : directories["stub_interface_baseside"] \
+			.joinpath("navbar.ini"),
 		
 	}
 	

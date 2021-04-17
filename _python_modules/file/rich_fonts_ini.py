@@ -7,9 +7,6 @@ if __name__ != '__main__':
 		global c
 		# TODO
 		c.rich_fonts_ini_out = """
-[FontFiles]
-file = FONTS/TitilliumWeb-Regular.ttf
-
 [TrueType]
 font = 0, Titillium Web, 20
 font = 1, Titillium Web, 25
