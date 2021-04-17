@@ -55,7 +55,7 @@ if __name__ != '__main__':
 
 # =========================== ADD FONTS IDS HERE ==============================
 # Yes, they are strings. Font sizes from rich_fonts.ini
-# TODO to fonts gen
+# TODO to common and make via rich_fonts_ini module gen
 	allowed_font_ids = {
 		"0" : '\\"0\\"', #Size 20
 		"1" : '\\"1\\"', #Size 25
@@ -97,13 +97,15 @@ if __name__ != '__main__':
 
 	class infocard():
 		string = ""
+		infocard_id = ""
 		
 		def __init__(self, *args):
 			self.string += infocard_start
 			for i in range(len(args)):
 				self.string += args[i].string
 			self.string += infocard_end
-			#print(self.string)
+			self.infocard_id = c.global_infocard_id() # Automatically increment
+			c.infocards_list.append(self) # Get it into the global list
 
 	class paragraph():
 		string = "<PARA/>"
@@ -142,43 +144,27 @@ if __name__ != '__main__':
 			# If no TRAs passed, just proceed without it.
 			self.string = self.tras + text_start + text + text_end
 
-# ======================== EDIT CARD TEMPLATES HERE ===========================
-# TODO: keep adding templates, move to templates
-	def system_card(sys_name, description):
-		return infocard(
-		alignment("center"),
-		text(sys_name, color="aqua", bold="true", font="3"),
-		paragraph(),
-		alignment("left"),
-		text(description, color="white", bold="false", font="0"),
-		)
-
-	def star_card(star_name, description):
-		return infocard(
-		alignment("center"),
-		text(star_name, color="yellow", bold="true", font="3"),
-		paragraph(),
-		alignment("left"),
-		text(description, color="white", bold="false", font="0"),
-		)
 
 # ========================== EDIT INFOCARDS HERE ==============================
 # Add entries to this list. Each entry is a call to a template fucntion above.
 # TODO: automatically make a list from all the .ini refs.
 	def make():
 		global c
-		c.infocards_list.append(
-			system_card("System 01", "A test system for the generic data pack."),
-		)
-		
-		# CODE
+		if not c.infocards_list:
+			print(divider)
+			print("Infocards JSON file wasn't generated due to no infocards!")
+			print("Check ini modules for errors, and make sure that")
+			print("infocards are generated last, after everything else.")
+			print(divider)
+			exit()
+
 		infocards_json_start = "{" + nl + space +'"filetype": "infocards",' \
 			+ nl + space + '"data": {' + nl
 		infocards_json_end = space + "}" + nl + "}"
 
 		c.infocards_json_out += infocards_json_start
 		for i in range(len(c.infocards_list)):
-			c.infocards_json_out += space*2 + '"'+str(i+1)+'" : "' \
+			c.infocards_json_out += space*2 + '"'+ c.infocards_list[i].infocard_id +'" : "' \
 				+ c.infocards_list[i].string + '",'
 			c.infocards_json_out += nl
 		c.infocards_json_out += infocards_json_end

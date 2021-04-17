@@ -6,5 +6,16 @@ if __name__ != '__main__':
 	def make():
 		global c
 		# TODO
-		
+		c.fonts_ini_out = """
+[FontFiles]
+file = FONTS/TitilliumWeb-Regular.ttf
+
+; fonts.ini, at least a Normal entry is required
+; This defines the default font for the user interface
+
+[TrueType]
+nickname = Normal
+font = Titillium Web
+"""
+
 

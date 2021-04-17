@@ -2,6 +2,14 @@
 # in _python_editable_presets.
 # In a command line run "python3 build_data.py" and that is all.
 
+from os import system, name;
+
+# Clear term
+if name == "nt": _ = system("clc")
+else: _ = system("clear")
+
+# Modules
+import _python_modules.evaluate_presets
 import _python_modules.common as c
 from _python_modules.common import print_file, write_file
 
@@ -36,20 +44,28 @@ import _python_modules.file.universe_ini
 # Do not edit anything in this block in order to ensure all .ini and .json files
 # are generated properly and to their rightful destinations.
 
+# This call blanket-evaluates all the data in "_editable_data_presets"
+# folder, including the modules there. Must preceed everything else.
+_python_modules.evaluate_presets.make()
+# TODO evaluate assets and maky symlinks (also check for duplicates files)
+
 # DATA directories and "librelancer.ini"
-# TODO: evaluate presets first, make a generated list of directories (systems)
-# and pass it alongside with the main directoriest list to be built.
 _python_modules.file.directories.make()
 _python_modules.file.librelancer_ini.make()
 
-# JSON data files
-_python_modules.file.infocards_json.make()
-_python_modules.file.strings_json.make()
-
 # INI data files 
 _python_modules.file.cameras_ini.make()
-#_python_modules.file.fonts_ini.make() TODO
-#_python_modules.file.rich_fonts_ini.make() TODO
+_python_modules.file.fonts_ini.make() #TODO
+_python_modules.file.mouse_ini.make() #TODO
+_python_modules.file.navmap_ini.make() #TODO
+_python_modules.file.rich_fonts_ini.make() #TODO
+_python_modules.file.universe_ini.make()
+
+# JSON data files
+#_python_modules.file.strings_json.make() TODO: make interface like infocards
+
+# Infocards are generated last, only after all the ini presets are done.
+_python_modules.file.infocards_json.make()
 
 
 # ============================ WRITING FILES =================================
@@ -62,9 +78,14 @@ write_file(c.json_files["strings"], c.strings_json_out)
 
 # INI data files
 write_file(c.ini_files["cameras"], c.cameras_ini_out)
-#write_file(c.ini_files["fonts"], c.fonts_ini_out) TODO
-#write_file(c.ini_files["rich_fonts"], c.rich_fonts_ini_out) TODO
+write_file(c.ini_files["fonts"], c.fonts_ini_out)
+write_file(c.ini_files["mouse"], c.mouse_ini_out)
+write_file(c.ini_files["navmap"], c.navmap_ini_out)
+write_file(c.ini_files["rich_fonts"], c.rich_fonts_ini_out)
 # TODO all other
+
+# TODO: STUB FILES!!!!!
+write_file(c.ini_files["stub_navbar"], ";stub")
 
 # ============================ DEBUG OPTIONS =================================
 # Uncomment to enable specific outputs.
@@ -75,10 +96,14 @@ print_file(c.librelancer_ini_path, c.librelancer_ini_out)
 
 # JSON data files
 print_file(c.json_files["infocards"], c.infocards_json_out)
-print_file(c.json_files["strings"], c.strings_json_out)
+#print_file(c.json_files["strings"], c.strings_json_out)
 
 # INI data files
-print_file(c.ini_files["cameras"], c.cameras_ini_out)
-#print_file(c.ini_files["fonts"], c.fonts_ini_out)
-#print_file(c.ini_files["rich_fonts"], c.rich_fonts_ini_out)
+#print_file(c.ini_files["cameras"], c.cameras_ini_out)
+print_file(c.ini_files["fonts"], c.fonts_ini_out)
+print_file(c.ini_files["mouse"], c.mouse_ini_out)
+print_file(c.ini_files["navmap"], c.navmap_ini_out)
+print_file(c.ini_files["rich_fonts"], c.rich_fonts_ini_out)
 # TODO all other
+
+

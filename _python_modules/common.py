@@ -1,18 +1,26 @@
 # This is not meant to be called directly, see "build_data.py" in root directory
 if __name__ != '__main__':
 	from pathlib import Path
+	import os, fnmatch, shutil
 
 	# =========================== FOR PRINTING ================================
 	space = "    "
 	nl = "\n"
 	eq = " = "
 	divider = "------------------------"
-
+	
+	# =========================== GLOBAL DATA =================================
+	# Do not change!
+	GLOBAL_INFOCARD_ID = 0 # Start at 0 because first call to it will increment.
+	GLOBAL_STRING_ID = 0 # Start at 0 because first call to it will increment.
+	
 	# ========================== GENERATED DATA ===============================
 	# TODO Storing in common for future access in generation process.
 	# Inner data (for generations)
 	strings_list = []
 	infocards_list = []
+	
+	systems_list = [] #TODO get it from _python_modules.evaluate_presets
 	
 	# Generated data
 	infocards_json_out = ""
@@ -93,9 +101,15 @@ if __name__ != '__main__':
 		"stars" : directories["solar"].joinpath("stararch.ini"),
 		"ships" : directories["ships"].joinpath("shiparch.ini"),
 		"universe" : directories["universe"].joinpath("universe.ini"),
+		
+		# TODO: STUB FILES!!! They have to be removed eventually.
+		"stub_navbar" : directories["interface"] \
+			.joinpath("BASESIDE").joinpath("navbar.ini"),
+		
 	}
 	
-	# =============================== WRITING =================================
+	# ========================= MENUS AND FUNCTIONS ===========================
+	# TODO: add symlinking and a small menu
 	def write_file(file_path, contents):
 		f = open(file_path, "w")
 		f.write(contents)
@@ -106,3 +120,26 @@ if __name__ != '__main__':
 		print(file_path)
 		print(divider)
 		print(contents)
+	
+	# Increments ID globally every time there is a call to infocard class
+	def global_infocard_id():
+		global GLOBAL_INFOCARD_ID
+		GLOBAL_INFOCARD_ID += 1
+		current_id = str(GLOBAL_INFOCARD_ID)
+		return current_id
+	
+	# Increments ID globally every time there is a call to string class
+	def global_string_id():
+		global GLOBAL_STRING_ID
+		GLOBAL_STRING_ID += 1
+		current_id = str(GLOBAL_STRING_ID)
+		return current_id
+	
+	def remove_target_files(filetype): # filetype is "*.ini", "*.json"
+		for rootDir, subdirs, filenames in os.walk('.'):
+			for filename in fnmatch.filter(filenames, filetype):
+				try: os.remove(os.path.join(rootDir, filename))
+				except OSError: print("Error while deleting file", rootDir, filename)
+				
+	def remove_target_directory(path): 
+		shutil.rmtree(path, ignore_errors=True)
