@@ -34,3 +34,7 @@
 __pycache__/
 *.py[cod]
  
+# Target files
+*.ini
+*.json
+
