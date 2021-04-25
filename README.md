@@ -6,3 +6,5 @@ in a safe way, ensuring absense of bugs, sanity checks and easy data manipulatio
 
 Use `build_data.py` to generate the game content. Just launch the script with 
 a python3.
+
+

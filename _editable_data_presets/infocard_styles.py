@@ -1,7 +1,7 @@
 # This is not meant to be called directly, see "build_data.py" in root directory
 if __name__ != '__main__':
 	import _python_modules.common as c
-	from _python_modules.file.infocards_json import infocard, alignment, \
+	from _python_modules.data_files.infocards_json import infocard, alignment, \
 		text, paragraph
 	
 	# Add new infocard styles here. Each style is a method, which returns 

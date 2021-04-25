@@ -3,42 +3,16 @@
 # In a command line run "python3 build_data.py" and that is all.
 
 from os import system, name;
+import _python_modules.common as c
 
 # Clear term
 if name == "nt": _ = system("clc")
 else: _ = system("clear")
 
-# Modules
+import _python_modules.create_directories
+import _python_modules.create_datafiles
+import _python_modules.create_hardlinks
 import _python_modules.evaluate_presets
-import _python_modules.common as c
-from _python_modules.common import print_file, write_file
-
-# Main
-import _python_modules.file.directories
-import _python_modules.file.librelancer_ini
-
-# JSON (TODO: keep expanding as new files are implemented)
-import _python_modules.file.infocards_json
-import _python_modules.file.strings_json
-
-# INI (TODO: keep expanding as new files are implemented)
-import _python_modules.file.base_missions_ini
-import _python_modules.file.cameras_ini
-import _python_modules.file.costumes_ini
-import _python_modules.file.constants_ini
-import _python_modules.file.bodyparts_ini
-import _python_modules.file.effect_shapes_ini
-import _python_modules.file.fonts_ini
-import _python_modules.file.hud_ini
-import _python_modules.file.infocardmap_ini
-import _python_modules.file.mouse_ini
-import _python_modules.file.navmap_ini
-import _python_modules.file.newcharacter_ini
-import _python_modules.file.rich_fonts_ini
-import _python_modules.file.shiparch_ini
-import _python_modules.file.solararch_ini
-import _python_modules.file.stararch_ini
-import _python_modules.file.universe_ini
 
 # ============================ MAIN SEQUENCE =================================
 # Do not edit anything in this block in order to ensure all .ini and .json files
@@ -46,104 +20,16 @@ import _python_modules.file.universe_ini
 
 # This call blanket-evaluates all the data in "_editable_data_presets"
 # folder, including the modules there. Must preceed everything else.
+print(c.divider)
+
 _python_modules.evaluate_presets.make()
-# TODO evaluate assets and maky symlinks (also check for duplicates files)
+_python_modules.create_directories.make()
+_python_modules.create_hardlinks.make()
+_python_modules.create_datafiles.make()
 
-# DATA directories and "librelancer.ini"
-_python_modules.file.directories.make()
-_python_modules.file.librelancer_ini.make()
-
-# INI data files 
-_python_modules.file.base_missions_ini.make() # TODO
-_python_modules.file.cameras_ini.make()
-_python_modules.file.costumes_ini.make() # TODO
-_python_modules.file.constants_ini.make() # TODO
-_python_modules.file.bodyparts_ini.make() # TODO
-_python_modules.file.effect_shapes_ini.make() # TODO
-_python_modules.file.fonts_ini.make() # TODO
-_python_modules.file.hud_ini.make() # TODO
-_python_modules.file.infocardmap_ini.make() # TODO
-_python_modules.file.mouse_ini.make() # TODO
-_python_modules.file.navmap_ini.make() # TODO
-_python_modules.file.newcharacter_ini.make() # TODO
-_python_modules.file.rich_fonts_ini.make() # TODO
-_python_modules.file.shiparch_ini.make() # TODO
-_python_modules.file.solararch_ini.make() # TODO
-_python_modules.file.stararch_ini.make() # TODO
-_python_modules.file.universe_ini.make() # TODO
-
-# JSON data files
-_python_modules.file.strings_json.make() #TODO: make interface like infocards
-
-# Infocards are generated last, only after all the ini presets are done.
-_python_modules.file.infocards_json.make()
-
-
-# ============================ WRITING FILES =================================
-# DATA directories and "librelancer.ini"
-write_file(c.librelancer_ini_path, c.librelancer_ini_out)
-
-# JSON data files
-write_file(c.json_files["infocards"], c.infocards_json_out)
-write_file(c.json_files["strings"], c.strings_json_out)
-
-# INI data files
-write_file(c.ini_files["cameras"], c.cameras_ini_out)
-write_file(c.ini_files["costumes"], c.costumes_ini_out)
-write_file(c.ini_files["constants"], c.constants_ini_out)
-write_file(c.ini_files["fonts"], c.fonts_ini_out)
-write_file(c.ini_files["bodyparts"], c.bodyparts_ini_out)
-write_file(c.ini_files["effect_shapes"], c.effect_shapes_ini_out)
-write_file(c.ini_files["fonts"], c.fonts_ini_out)
-write_file(c.ini_files["HUD"], c.hud_ini_out)
-write_file(c.ini_files["infocardmap"], c.infocardmap_ini_out)
-write_file(c.ini_files["mbases"], c.base_missions_ini_out)
-write_file(c.ini_files["mouse"], c.mouse_ini_out)
-write_file(c.ini_files["navmap"], c.navmap_ini_out)
-write_file(c.ini_files["newcharacter"], c.newcharacter_ini_out)
-write_file(c.ini_files["rich_fonts"], c.rich_fonts_ini_out)
-write_file(c.ini_files["ships"], c.shiparch_ini_out)
-write_file(c.ini_files["solar"], c.solararch_ini_out)
-write_file(c.ini_files["stars"], c.stararch_ini_out)
-write_file(c.ini_files["universe"], c.universe_ini_out)
-# TODO all other
-
-# TODO: STUB FILES!!!!!
-write_file(c.ini_files["stub_navbar"], ";stub")
-
-# ============================ DEBUG OPTIONS =================================
-# Uncomment to enable specific outputs.
-# Prints generated data files to command line without writing the files.
-
-## DATA directories and "librelancer.ini"
-#print_file(c.librelancer_ini_path, c.librelancer_ini_out)
-
-## JSON data files
-#print_file(c.json_files["infocards"], c.infocards_json_out)
-#print_file(c.json_files["strings"], c.strings_json_out)
-
-## INI data files
-#print_file(c.ini_files["cameras"], c.cameras_ini_out)
-#print_file(c.ini_files["costumes"], c.costumes_ini_out)
-#print_file(c.ini_files["constants"], c.constants_ini_out)
-#print_file(c.ini_files["fonts"], c.fonts_ini_out)
-#print_file(c.ini_files["bodyparts"], c.bodyparts_ini_out)
-#print_file(c.ini_files["effect_shapes"], c.effect_shapes_ini_out)
-#print_file(c.ini_files["fonts"], c.fonts_ini_out)
-#print_file(c.ini_files["HUD"], c.hud_ini_out)
-#print_file(c.ini_files["infocardmap"], c.infocardmap_ini_out)
-#print_file(c.ini_files["mbases"], c.base_missions_ini_out)
-#print_file(c.ini_files["mouse"], c.mouse_ini_out)
-#print_file(c.ini_files["navmap"], c.navmap_ini_out)
-#print_file(c.ini_files["newcharacter"], c.newcharacter_ini_out)
-#print_file(c.ini_files["rich_fonts"], c.rich_fonts_ini_out)
-#print_file(c.ini_files["ships"], c.shiparch_ini_out)
-#print_file(c.ini_files["solar"], c.solararch_ini_out)
-#print_file(c.ini_files["stars"], c.stararch_ini_out)
-#print_file(c.ini_files["universe"], c.universe_ini_out)
-## TODO all other
-
-## TODO: STUB FILES!!!!!
-#print_file(c.ini_files["stub_navbar"], ";stub")
-
-print("FINISHED")
+# TODO warning and error messages should be popped here
+# TODO: move to status_report, leave a trigger to common
+# TODO make a "status_report" function that enacts messages
+if not c.BUILD_ERROR: print(c.col.OKGREEN, "GAME DATA WAS BUILT", c.col.ENDC)
+else: print(c.col.ERROR, "GAME DATA WAS NOT FULLY BUILT DUE TO PREVIOUS ERRORS", c.col.ENDC)
+print(c.divider)
