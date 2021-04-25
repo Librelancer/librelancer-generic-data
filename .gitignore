@@ -37,4 +37,4 @@ __pycache__/
 # Target files
 *.ini
 *.json
-
+DATA/
